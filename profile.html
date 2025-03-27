@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+</head>
+
+<body>
+    <script src="LocalStorage.js"></script>
+    <script>
+        if (!hasStorage("visited-count")) {
+            setStorage("visited-count", 1);
+        } else {
+            setStorage("visited-count", Number(getStorage("visited-count")) + 1);
+        }
+
+        var images = ["1.jpg", "2.jpg"];
+
+        function selectGenderImage() {
+            if (!hasStorage("gender")) {
+                console.log("you did not choose the gender!");
+                return;
+            }
+            return getStorage("gender") === "male" ? images[0] : images[1];
+        }
+
+        function getStorageChecked(key) {
+            if (!hasStorage(key)) {
+                console.log("Something is very wrong");
+                return;
+            }
+            return getStorage(key);
+        }
+
+        document.write(
+            `<div style="display: flex; align-items: center;">
+                <img src=${selectGenderImage()} alt=${getStorageChecked("gender")} />
+                <p>Welcome <span style="font-weight: bold;color: ${getStorageChecked("favourite-color")};">${getStorageChecked("name")}</span>. You have visited this site <span style="font-weight: bold; color: ${getStorageChecked("favourite-color")};">${getStorage("visited-count")}</span> times :)</p>
+            </div>`);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .EditedInput {
+            padding: 5px;
+        }
+
+        .EditedInput input[type="text"],
+        .EditedInput input[type="number"] {
+            position: absolute;
+            left: 160px;
+            width: 220px;
+        }
+
+        button[type="button"] {
+            width: 10rem;
+            margin-left: 5rem;
+        }
+    </style>
+    <title>Register Page</title>
+</head>
+
+<body>
+    <div class="EditedInput">
+        <label for="name">Enter your name</label>
+        <input name="name" id="name" type="text" required />
+    </div>
+    <div class="EditedInput">
+        <label for="age">Enter your age</label>
+        <input name="age" id="age" type="number" required />
+    </div>
+    <div class="EditedInput">
+        <input type="radio" name="gender" id="rad-male" value="male" />
+        <label for="rad-male">
+            <img src="1.jpg" alt="male" />
+        </label>
+        <input type="radio" name="gender" id="rad-female" value="female" />
+        <label for="rad-female">
+            <img src="2.jpg" alt="female" />
+        </label>
+    </div>
+    <div class="EditedInput">
+        <label for="age">Select your favourite color</label>
+        <select id="color-select">
+            <option>Red</option>
+            <option>Green</option>
+            <option>Blue</option>
+        </select>
+    </div>
+    <button id="submit-button" type="button">Register</button>
+    <script src="LocalStorage.js"></script>
+    <script>
+        document.getElementById("submit-button").addEventListener("click", () => {
+            setStorage("name", document.getElementById("name").value);
+            setStorage("age", document.getElementById("age").value);
+            setStorage("gender", document.getElementById("rad-male").checked ?
+                document.getElementById("rad-male").value :
+                document.getElementById("rad-female").value);
+            setStorage("favourite-color", document.getElementById("color-select").value);
+            location.href = "profile.html";
+        });
+    </script>
+</body>
+
+</html>
